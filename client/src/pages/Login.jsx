@@ -1,60 +1,155 @@
-import { Container,Paper,Typography,TextField,Button} from '@mui/material'
-import React, { useState } from 'react'
+import {
+  Container,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+  IconButton,
+  Avatar,
+} from "@mui/material";
+import React, { useState } from "react";
+import { CameraAlt as CameraAltIcon } from "@mui/icons-material";
+import { VisuallyHiddenInput } from "../components/styles/styledComponents";
 
 function Login() {
-
-    const [isLogin,setIsLogin] = useState(true)
-    const toggleLogin = () => setIsLogin(!isLogin)
-
-
+  const [isLogin, setIsLogin] = useState(true);
+  const toggleLogin = () => {
+    console.log(isLogin);
+    setIsLogin(!isLogin);
+  };
 
   return (
-   <Container component={"main"} maxWidth="xs" sx={{height:"100vh", display:"flex",alignItems:"center",justifyContent:"center"}} >
-    <Paper elevation={3} sx={{
-        padding:4,
-        display:"flex",
-        flexDirection:"column",
-        alignItems:"center",
-    }} >
+    <Container
+      component={"main"}
+      maxWidth="xs"
+      sx={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 4,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {isLogin ? (
+          <>
+            <Typography variant="h5">Login</Typography>
+            <form style={{ width: "100%", marginTop: "1rem" }}>
+              <TextField
+                required
+                fullWidth
+                label="Username"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                fullWidth
+                label="Password"
+                type="password"
+                margin="normal"
+                variant="outlined"
+              />
+              <Button
+                sx={{ marginTop: "1rem" }}
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Login
+              </Button>
 
-        {isLogin ? (<>
-        <Typography variant="h5" >Login
+              <Typography textAlign={"center"} margin={"1rem"}>
+                OR
+              </Typography>
 
-        </Typography>
-        <form style={{width:"100%", marginTop:"1rem"}}>
-            <TextField
-            required fullWidth
-            label="Username"
-            margin='normal'
-            variant='outlined'
-            />
-            <TextField
-            required fullWidth
-            label="Password"
-            type="password"
-            margin='normal'
-            variant='outlined'
-            />
-            <Button variant="contained" color="primary" type="submit" > Login</Button>
+              <Button fullWidth variant="text" onClick={() => toggleLogin()}>
+                Sign Up Instead
+              </Button>
+            </form>
+          </>
+        ) : (
+          <>
+            <Typography variant="h5">SignUp</Typography>
+            <form style={{ width: "100%", marginTop: "1rem" }}>
+              <Stack position={"relative"} width={"10rem"} margin={"auto"}>
+                <Avatar
+                  sx={{ width: "10rem", height: "10rem", objectFit: "contain" }}
+                />
+                <IconButton
+                  sx={{
+                    position: "absolute",
+                    bottom: "0",
+                    right: "0",
+                    color: "white",
+                    bgcolor: "rgba(0,0,0,0.5)",
+                    ":hover": { bgcolor: "rgba(0,0,0,0.7)" },
+                  }}
 
-            <Typography textAlign={"center"} margin={"1rem"}  >OR</Typography>
+                  component="label"
+                >
+                  <>
+                    <CameraAltIcon/>
+                    <VisuallyHiddenInput type="file" />
+                  </>
+                </IconButton>
+              </Stack>
 
-            <Button
-            fullWidth
-            variant='text'
-            onClick={()=>toggleLogin}
-            
-            >Sign Up Instead</Button>
+              <TextField
+                required
+                fullWidth
+                label="Name"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                fullWidth
+                label="Bio"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                fullWidth
+                label="Username"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                fullWidth
+                label="Password"
+                type="password"
+                margin="normal"
+                variant="outlined"
+              />
+              <Button fullWidth variant="contained" color="primary" type="submit">
+                SignUp
+              </Button>
 
-        </form>
-        </>) :( <span>register</span> )}
+              <Typography textAlign={"center"} margin={"1rem"}>
+                OR
+              </Typography>
 
-
-
-    </Paper>
-
-   </Container>
-  )
+              <Button fullWidth variant="text" onClick={() => toggleLogin()}>
+                Log In Instead
+              </Button>
+            </form>
+          </>
+        )}
+      </Paper>
+    </Container>
+  );
 }
 
-export default Login
+export default Login;
