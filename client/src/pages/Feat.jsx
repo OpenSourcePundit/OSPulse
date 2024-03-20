@@ -2,7 +2,9 @@ import React from 'react'
 
 const Feat = () => {
   return (
-    <div>Feat</div>
+    <div>Feat 
+
+    </div>
   )
 }
 

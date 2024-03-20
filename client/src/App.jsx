@@ -1,21 +1,36 @@
-import React,{ lazy } from "react";
+import React, { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 //Dynamic Routing.
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Chat = lazy(() => import("./pages/Chat"));
 const Groups = lazy(() => import("./pages/Groups"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
+let user = true;
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/chat/:chatId" element={<Chat />} />
-        <Route path="/groups" element={<Groups />} />
-        <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoute user={user} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/chat/:chatId" element={<Chat />} />
+          <Route path="/groups" element={<Groups />} />
+        </Route>
+     
+        <Route
+          path="/login"
+          element={
+            // This will disable or can say auto redirect to home when /login is in address
+            <ProtectedRoute user={!user} redirect="/">  
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+          <Route path="*" element={<NotFound />} />
 
       </Routes>
     </Router>
