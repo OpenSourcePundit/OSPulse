@@ -1,7 +1,11 @@
+/* eslint-disable react/display-name */
 import React from "react";
 import Header from "./Header";
 import Title from "../shared/Title";
 import { Grid } from "@mui/material";
+import ChatList from "../specific/ChatList";
+
+
 const AppLayout = () => (WrappedComponent) => {
   // hingh order component returns wrapped component which in turn returns the function
   return (props) => {
@@ -16,7 +20,9 @@ const AppLayout = () => (WrappedComponent) => {
             md={3}
             sx={{ display: { xs: "none", sm: "block" } }}
             height={"100%"}
-          >first</Grid>
+          >
+            <ChatList />
+          </Grid>
           <Grid
             item
             xs={12}

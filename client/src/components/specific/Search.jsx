@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SearchDialogue = () => {
+const SearchDialog = () => {
   return (
     <div>SearchDialogue</div>
   )
 }
 
-export default SearchDialogue
+export default SearchDialog

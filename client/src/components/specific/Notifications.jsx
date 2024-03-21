@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Notifications = () => {
+const NotificationDialog = () => {
   return (
-    <div>Notifications</div>
+    <div>NotificationDialog</div>
   )
 }
 
-export default Notifications
+export default NotificationDialog
