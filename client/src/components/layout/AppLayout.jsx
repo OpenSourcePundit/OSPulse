@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 import ChatList from "../specific/ChatList";
 import { sampleChats } from "../../constants/sampleData";
 import { useParams } from "react-router-dom";
+import Profile from "../specific/Profile";
 
 const AppLayout = () => (WrappedComponent) => {
   // hingh order component returns wrapped component which in turn returns the function
@@ -29,7 +30,7 @@ const AppLayout = () => (WrappedComponent) => {
             sm={4}
             md={3}
             sx={{ display: { xs: "none", sm: "block" } }}
-            height={"100%"}
+            height={"100vh"}
           >
             <ChatList
               chats={sampleChats}
@@ -50,7 +51,7 @@ const AppLayout = () => (WrappedComponent) => {
             sm={8}
             md={5}
             lg={6}
-            height={"100%"}
+            height={"100vh"}
             bgcolor="primary.main"
           >
             <WrappedComponent {...props} />
@@ -59,10 +60,10 @@ const AppLayout = () => (WrappedComponent) => {
             item
             md={4}
             lg={3}
-            height={"100%"}
-            sx={{ display: { xs: "none", sm: "block" } }}
+            height={"100vh"}
+            sx={{ display: { xs: "none", md: "block" },padding:"2rem",bgcolor:"rgba(0,0,0,0.75)" }}
           >
-            Third
+            <Profile/>
           </Grid>
         </Grid>
       </>
