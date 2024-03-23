@@ -4,11 +4,21 @@ import Header from "./Header";
 import Title from "../shared/Title";
 import { Grid } from "@mui/material";
 import ChatList from "../specific/ChatList";
-
+import { sampleChats } from "../../constants/sampleData";
+import { useParams } from "react-router-dom";
 
 const AppLayout = () => (WrappedComponent) => {
   // hingh order component returns wrapped component which in turn returns the function
   return (props) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const params = useParams();
+    const chatId = params.chatId;
+
+    const handleDeleteChat = (e, _id, groupChat) => {
+      e.preventDefault();
+      console.log("deletechat", _id, groupChat);
+    };
+
     return (
       <>
         <Title />
@@ -21,7 +31,18 @@ const AppLayout = () => (WrappedComponent) => {
             sx={{ display: { xs: "none", sm: "block" } }}
             height={"100%"}
           >
-            <ChatList />
+            <ChatList
+              chats={sampleChats}
+              chatId={chatId}
+              handleDeleteChat={handleDeleteChat}
+              // newMessagesAlert={[
+              //   {
+              //     chatId: "1",
+              //     count: 4,
+              //   },
+              // ]}
+              // onlineUsers={["1", "2"]}
+            />
           </Grid>
           <Grid
             item
@@ -40,7 +61,9 @@ const AppLayout = () => (WrappedComponent) => {
             lg={3}
             height={"100%"}
             sx={{ display: { xs: "none", sm: "block" } }}
-          >Third</Grid>
+          >
+            Third
+          </Grid>
         </Grid>
       </>
     );

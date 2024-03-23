@@ -18,7 +18,7 @@ function App() {
      <Suspense fallback={<LayoutLoader/>}>
      <Routes>
         <Route element={<ProtectedRoute user={user} />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/chat/:chatId" element={<Chat />} />
           <Route path="/groups" element={<Groups />} />
         </Route>
