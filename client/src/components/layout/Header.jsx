@@ -21,8 +21,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const SearchDialog = lazy(()=>import("../specific/Search"))
-const NotificationDialog = lazy(()=>import("../specific/Notifications"))
-const NewGroupDialog = lazy(()=>import("../specific/NewGroup"))
+const Notifications = lazy(()=>import("../specific/Notifications"))
+const NewGroup = lazy(()=>import("../specific/NewGroup"))
 
 const Header = () => {
 
@@ -97,14 +97,14 @@ const Header = () => {
 {
         isNotification &&(
           <Suspense fallback={<Backdrop open />}>
-  <NotificationDialog/>
+  <Notifications/>
 </Suspense>      )
       }
 
 {
         isNewGroup &&(
           <Suspense fallback={<Backdrop open />}>
-  <NewGroupDialog/>
+  <NewGroup/>
 </Suspense>      )
       }
 
